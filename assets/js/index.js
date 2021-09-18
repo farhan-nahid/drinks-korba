@@ -124,7 +124,18 @@ const displayDetails = (drink) => {
           <p>${strInstructions}</p>    
           <h4>Glass: ${strGlass}</h4>
           <h4>Ingredients:</h4>
-         
+          <ul>
+            <li>${strMeasure1 ? strMeasure1 : ""} ${strIngredient1 ? strIngredient1 : ""}</li>
+            <li>${strMeasure2 ? strMeasure2 : ""} ${strIngredient2 ? strIngredient2 : ""}</li>
+            <li>${strMeasure3 ? strMeasure3 : ""} ${strIngredient3 ? strIngredient3 : ""}</li>
+            <li>${strMeasure4 ? strMeasure4 : ""} ${strIngredient4 ? strIngredient4 : ""}</li>
+            <li>${strMeasure5 ? strMeasure5 : ""} ${strIngredient5 ? strIngredient5 : ""}</li>
+            <li>${strMeasure6 ? strMeasure6 : ""} ${strIngredient6 ? strIngredient6 : ""}</li>
+            <li>${strMeasure7 ? strMeasure7 : ""} ${strIngredient7 ? strIngredient7 : ""}</li>
+            <li>${strMeasure8 ? strMeasure8 : ""} ${strIngredient8 ? strIngredient8 : ""}</li>
+            <li>${strMeasure9 ? strMeasure9 : ""} ${strIngredient9 ? strIngredient9 : ""}</li>
+            <li>${strMeasure10 ? strMeasure10 : ""} ${strIngredient10 ? strIngredient10 : ""}</li>
+          </ul> 
 
           <p class="copyright">&copy; Copyright All Right Reserved By
             <a href="https://github.com/farhan-nahid/" target="_blank">Farhan</a>
