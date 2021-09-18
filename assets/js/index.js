@@ -1,16 +1,28 @@
-// error section
+// html elements
 
 const error = document.getElementById("error");
 error.style.display = "none";
+const spinner = document.getElementById("spinner");
+spinner.style.display = "none";
+const drinksContainer = document.getElementById("drinks__container");
 
 // loading spinner
 
 const loadingSpinner = (show) => {
   if (show) {
-    document.getElementById("spinner").style.display = "block";
+    spinner.style.display = "block";
   } else {
-    document.getElementById("spinner").style.display = "none";
+    spinner.style.display = "none";
   }
+};
+
+const loadData = async (url) => {
+  drinksContainer.textContent = "";
+  error.style.display = "none";
+  loadingSpinner(true);
+  const res = await fetch(url);
+  const data = await res.json();
+  displayDrinks(data.drinks);
 };
 
 // search drinks
@@ -21,8 +33,10 @@ document
     e.preventDefault();
     const input = document.getElementById("drinks__search__input");
     const inputValue = input.value;
+    loadingSpinner(true);
     const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`;
     try {
+      drinksContainer.textContent = "";
       error.style.display = "none";
       const res = await fetch(url);
       const data = await res.json();
@@ -34,29 +48,64 @@ document
       error.style.fontSize = "30px";
       error.style.fontWeight = 800;
       error.style.display = "block";
+      loadingSpinner(false);
     }
     input.value = "";
   });
 
-// fetch non alcoholic data
+// filter items -1
 
-const fetchData = async () => {
-  const url =
-    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
-  loadingSpinner(true);
-  const res = await fetch(url);
-  const data = await res.json();
-  displayDrinks(data.drinks);
-};
+document.getElementById("gin").addEventListener("click", () => {
+  loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin");
+});
 
-// call function
+// filter items -2
 
-fetchData();
+document.getElementById("vodka").addEventListener("click", () => {
+  loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka");
+});
+
+// filter items -3
+
+document.getElementById("alcoholic").addEventListener("click", () => {
+  loadData(
+    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
+  );
+});
+
+// filter items -4
+
+document.getElementById("non__alcoholic").addEventListener("click", () => {
+   loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic");
+});
+
+// filter items -5
+
+document.getElementById("champagne__flute").addEventListener("click", () => {
+  loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Champagne_flute");
+});
+
+// filter items -6
+
+document.getElementById("cocktail__glass").addEventListener("click", () => {
+  loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass");
+});
+
+// filter items -7
+
+document.getElementById("cocktail").addEventListener("click", () => {
+  loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail");
+});
+
+// filter items -8
+
+document.getElementById("ordinary__drink").addEventListener("click", () => {
+  loadData("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink");
+});
 
 // display non alcoholic drinks
 
 const displayDrinks = (drinks) => {
-  const drinksContainer = document.getElementById("drinks__container");
   drinksContainer.textContent = "";
   drinks.forEach((drink) => {
     const { strDrink, strDrinkThumb, idDrink } = drink;
@@ -81,7 +130,6 @@ const displayDrinks = (drinks) => {
 // display details function
 
 const displayDetails = (drink) => {
-  console.log(drink);
   const {
     strInstructions,
     strGlass,
@@ -136,7 +184,6 @@ const displayDetails = (drink) => {
             <li>${strMeasure9 ? strMeasure9 : ""} ${strIngredient9 ? strIngredient9 : ""}</li>
             <li>${strMeasure10 ? strMeasure10 : ""} ${strIngredient10 ? strIngredient10 : ""}</li>
           </ul> 
-
           <p class="copyright">&copy; Copyright All Right Reserved By
             <a href="https://github.com/farhan-nahid/" target="_blank">Farhan</a>
           </p>
@@ -159,7 +206,10 @@ const displayDetails = (drink) => {
     }
   }
 };
+
 /* 
+
+
 <ul>
 <li>${strMeasure1 ? strMeasure1 : ""} ${strIngredient1 ? strIngredient1 : ""}</li>
 <li>${strMeasure2 ? strMeasure2 : ""} ${strIngredient2 ? strIngredient2 : ""}</li>
@@ -171,4 +221,7 @@ const displayDetails = (drink) => {
 <li>${strMeasure8 ? strMeasure8 : ""} ${strIngredient8 ? strIngredient8 : ""}</li>
 <li>${strMeasure9 ? strMeasure9 : ""} ${strIngredient9 ? strIngredient9 : ""}</li>
 <li>${strMeasure10 ? strMeasure10 : ""} ${strIngredient10 ? strIngredient10 : ""}</li>
-</ul> */
+</ul> 
+
+
+*/

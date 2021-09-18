@@ -48,6 +48,30 @@ h3 {
   font-weight: 700;
 }
 
+/* filter buttons */
+
+#filter__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  width: 95%;
+}
+
+#filter__buttons button {
+  border: 0;
+  padding: 10px 20px;
+  background-color: var(--dark-color);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--light-color);
+  border-radius: 15px;
+  margin: 6px;
+  cursor: pointer;
+}
+
 /* drinks Search Box */
 
 .container {
@@ -130,6 +154,7 @@ h3 {
   background-color: var(--light-color);
   border-radius: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .card img {
