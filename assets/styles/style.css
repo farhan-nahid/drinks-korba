@@ -103,11 +103,8 @@ h3 {
 /* spinner css */
 
 #spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   height: 450px;
-  display: none;
 }
 
 #spinner img {

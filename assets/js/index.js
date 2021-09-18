@@ -13,6 +13,7 @@ const loadingSpinner = (show) => {
 const fetchData = async () => {
   const url =
     "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
+   loadingSpinner(true)
   const res = await fetch(url);
   const data = await res.json();
   displayDrinks(data.drinks);
@@ -35,7 +36,9 @@ const displayDrinks = (drinks) => {
         <h3>${strDrink}</h3>
     `;
     drinksContainer.appendChild(drinksCard);
+    loadingSpinner(false)
     drinksCard.addEventListener("click", async () => {
+     loadingSpinner(true)
       const detailsUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`;
       const res = await fetch(detailsUrl);
       const data = await res.json();
@@ -110,6 +113,7 @@ const displayDetails = (drink) => {
   `;
 
   modalContainer.appendChild(modal);
+  loadingSpinner(false)
 
   // hide modal
   document.getElementById("cross__icon").addEventListener("click", () => {
